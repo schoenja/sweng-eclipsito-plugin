@@ -1,5 +1,7 @@
 package io.jasch.dev.kotlin.eclipsito
 
+import io.jasch.dev.kotlin.eclipsito.data.Extension
+import io.jasch.dev.kotlin.eclipsito.data.ExtensionPoint
 import org.gradle.api.Project
 
 /**
@@ -9,8 +11,30 @@ import org.gradle.api.Project
  * @since
  */
 open class EclipsitoPluginExtension() {
+    var extPoints: ArrayList<ExtensionPoint> = ArrayList()
+    var exts: ArrayList<Extension> = ArrayList()
+
+    fun extension(extension: LinkedHashMap<String, String>) {
+        val extPoint = extension["point"]
+        val extClassname = extension["classname"]
+        val extAdd = extension["additional"]
+        if (extPoint != null && extClassname != null) {
+            this.exts.add(Extension(extPoint, extClassname, extAdd))
+        }
+    }
+
+    fun extensionpoint(extPoint: LinkedHashMap<String, String>) {
+        val pointId = extPoint["id"]
+        val pointName = extPoint["name"]
+        val pointXml = extPoint["xml"]
+//        val pointAdd = extPoint["additional"]
+        if (pointId != null && pointName != null && pointXml != null) {
+            this.extPoints.add(ExtensionPoint(pointId, pointName, pointXml))
+        }
+    }
+
     //lateinit var project: Project
-    var extPoints: LinkedHashMap<String, String> = LinkedHashMap<String, String>()
+    /*var extPoints: LinkedHashMap<String, String> = LinkedHashMap<String, String>()
     var exts: LinkedHashMap<String, MutableList<String>> = LinkedHashMap<String, MutableList<String>>()
 
 
@@ -34,5 +58,5 @@ open class EclipsitoPluginExtension() {
             this.extPoints.put(pointId,pointName)
             this.exts.put(pointName, ArrayList<String>())
         }
-    }
+    }*/
 }

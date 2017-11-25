@@ -23,8 +23,8 @@ open class ListExtensionsTask : DefaultTask() {
         val myExtensions = myExtension.exts
 //        println(myExporterClasses)
         for (extPoint in myExtensions) {
-            println("Extension point: ${extPoint.key}:")
-            for (ex in extPoint.value) {
+            println("Extension point: ${extPoint.point}:")
+            for (ex in extPoint.classname) {
                 println("  $ex")
             }
         }

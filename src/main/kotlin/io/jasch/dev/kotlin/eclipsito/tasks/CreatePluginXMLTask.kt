@@ -19,6 +19,8 @@ open class CreatePluginXMLTask : DefaultTask() {
 
 //        val myExtPoints = myExtension.extPoints
 
+        println(myExtension.exts)
+
         val plugin = StringBuilder() // Ghetto XML creation, because other stuff is too heavy
 
         plugin.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
@@ -28,26 +30,42 @@ open class CreatePluginXMLTask : DefaultTask() {
                 "   version=\"2.0.0\"\n" +
                 "   provider-name=\"\">") // Begin of plugin tag
 
-        for (extPoint in myExtension.extPoints) {
-            plugin.append("\n")
-            plugin.append("  <extension-point id=\"${extPoint.key}\" name=\"${extPoint.value}\"/>")
+        // Let the dependency hell begin!
+        plugin.append("\n\n  <runtime>")
+
+        project.configurations.getByName("runtime").forEach {
+            if (it.isFile) {
+                plugin.append("\n    <library name=\"lib/${it.name}\">\n" +
+                        "      <export name=\"*\"/>\n" +
+                        "    </library>")
+            }
         }
 
-        plugin.append("  <extension point=\"org.eclipse.core.runtime.applications\" id=\"GanttProject\">\n" +
+        plugin.append("\n  </runtime>\n")
+
+        myExtension.extPoints.forEach {
+            plugin.append("\n")
+            plugin.append("  <extension-point id=\"${it.id}\" name=\"${it.name}\"/>")
+        }
+
+        plugin.append("\n  <extension point=\"org.eclipse.core.runtime.applications\" id=\"GanttProject\">\n" +
                 "    <application>\n" +
                 "      <run class=\"biz.ganttproject.application.MainApplication\"/>\n" +
                 "    </application>\n" +
                 "  </extension>") // Entry point extension
 
-        for (ext in myExtension.exts) {
-            plugin.append("  <extension point=\"biz.ganttproject.${ext.key}\">\n")
-            for (entry in ext.value) {
-                plugin.append("")
+        plugin.append("\n")
+        for (extPoint in myExtension.extPoints.listIterator()) {
+            plugin.append("\n  <extension point=\"biz.ganttproject.${extPoint.id}\">\n")
+            for (ext in myExtension.exts.filter { it.point == extPoint.name }.listIterator()) {
+                plugin.append("    <${extPoint.xmlTag} class=\"${ext.classname}\" ${ext.additional ?: ""}/>\n")
             }
+            plugin.append("  </extension>\n")
         }
 
 
-        plugin.append("\n</plugin>") // End of plugin tag
+
+        plugin.append("</plugin>") // End of plugin tag
         println(plugin.toString())
 
         /*val plugin = xml("pluging") {
