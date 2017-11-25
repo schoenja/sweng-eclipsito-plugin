@@ -1,5 +1,6 @@
 package io.jasch.dev.kotlin.eclipsito
 
+import groovyjarjarcommonscli.MissingArgumentException
 import io.jasch.dev.kotlin.eclipsito.data.Extension
 import io.jasch.dev.kotlin.eclipsito.data.ExtensionPoint
 import org.gradle.api.Project
@@ -16,21 +17,41 @@ open class EclipsitoPluginExtension() {
 
     fun extension(extension: LinkedHashMap<String, String>) {
         val extPoint = extension["point"]
-        val extClassname = extension["classname"]
-        val extAdd = extension["additional"]
-        if (extPoint != null && extClassname != null) {
-            this.exts.add(Extension(extPoint, extClassname, extAdd))
+        val usedExtPoint = this.extPoints.firstOrNull { it.name == extPoint }
+        if (usedExtPoint != null) {
+            val data = HashMap<String, String?>()
+            val dataPoints = usedExtPoint.data
+            for (point in dataPoints) {
+                if (extension.containsKey(point.key)) {
+                    data[point.key] = extension[point.key]
+                } else {
+                    if (point.value.first) throw MissingArgumentException("Missing key: ${point.key}.")
+//                    if (!point.value.first) {
+//                        data[point.key] = null
+//                    } else {
+//                        throw MissingArgumentException("Missing key: ${point.key}.")
+//                    }
+                }
+            }
+
+            this.exts.add(Extension(usedExtPoint.name, data))
         }
     }
 
-    fun extensionpoint(extPoint: LinkedHashMap<String, String>) {
-        val pointId = extPoint["id"]
-        val pointName = extPoint["name"]
-        val pointXml = extPoint["xml"]
-//        val pointAdd = extPoint["additional"]
-        if (pointId != null && pointName != null && pointXml != null) {
-            this.extPoints.add(ExtensionPoint(pointId, pointName, pointXml))
+    fun extensionpoint(extPoint: LinkedHashMap<String, Object>) {
+        val pointId = extPoint["id"] as String
+        val pointName = extPoint["name"] as String
+        val pointXml = extPoint["xml"] as String
+        val pointData = extPoint["data"] as HashMap<String, String>
+        val data = HashMap<String, Pair<Boolean, String>>()
+        for (d in pointData) {
+            if (d.key.startsWith("_")) {
+                data[d.key.drop(1)] = Pair(false, d.value)
+            } else {
+                data[d.key] = Pair(true, d.value)
+            }
         }
+        this.extPoints.add(ExtensionPoint(pointId, pointName, pointXml, data))
     }
 
     //lateinit var project: Project

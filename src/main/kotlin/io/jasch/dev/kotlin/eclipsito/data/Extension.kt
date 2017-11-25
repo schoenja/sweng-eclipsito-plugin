@@ -8,6 +8,5 @@ package io.jasch.dev.kotlin.eclipsito.data
  */
 data class Extension(
      val point: String,
-     val classname: String,
-     val additional: String?
+     val data: HashMap<String, String?>
 )

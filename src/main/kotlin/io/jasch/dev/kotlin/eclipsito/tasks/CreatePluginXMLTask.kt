@@ -33,6 +33,10 @@ open class CreatePluginXMLTask : DefaultTask() {
         // Let the dependency hell begin!
         plugin.append("\n\n  <runtime>")
 
+        plugin.append("\n    <library name=\"ganttproject.jar\">\n" +
+                "      <export name=\"*\"/>\n" +
+                "    </library>")
+
         project.configurations.getByName("runtime").forEach {
             if (it.isFile) {
                 plugin.append("\n    <library name=\"lib/${it.name}\">\n" +
@@ -58,8 +62,17 @@ open class CreatePluginXMLTask : DefaultTask() {
         for (extPoint in myExtension.extPoints.listIterator()) {
             plugin.append("\n  <extension point=\"biz.ganttproject.${extPoint.id}\">\n")
             for (ext in myExtension.exts.filter { it.point == extPoint.name }.listIterator()) {
-                plugin.append("    <${extPoint.xmlTag} class=\"${ext.classname}\" ${ext.additional ?: ""}/>\n")
+                val extBuilder = StringBuilder("    ")
+                extBuilder.append("<${extPoint.xmlTag} ")
+                for (d in ext.data) {
+                    extBuilder.append("${extPoint.data[d.key]!!.second}=\"${d.value}\" ")
+                }
+                extBuilder.append("/>")
+                plugin.append(extBuilder.toString()).append("\n")
             }
+//            for (ext in myExtension.exts.filter { it.point == extPoint.name }.listIterator()) {
+//                plugin.append("    <${extPoint.xmlTag} class=\"${ext.classname}\" ${ext.additional ?: ""}/>\n")
+//            }
             plugin.append("  </extension>\n")
         }
 
@@ -67,21 +80,5 @@ open class CreatePluginXMLTask : DefaultTask() {
 
         plugin.append("</plugin>") // End of plugin tag
         println(plugin.toString())
-
-        /*val plugin = xml("pluging") {
-            attribute("id", "biz.ganttproject")
-            attribute("name", "Ganttproject plug-in")
-            attribute("version", "2.0.0")
-            attribute("provider-name", "")
-
-            for (extPoint in myExtPoints) {
-                "extension-point" {
-                    attribute("id", extPoint.key)
-                    attribute("name", extPoint.value)
-                }
-            }
-        }
-
-        println(plugin.toString())*/
     }
 }

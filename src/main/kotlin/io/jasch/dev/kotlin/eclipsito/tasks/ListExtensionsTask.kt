@@ -24,9 +24,9 @@ open class ListExtensionsTask : DefaultTask() {
 //        println(myExporterClasses)
         for (extPoint in myExtensions) {
             println("Extension point: ${extPoint.point}:")
-            for (ex in extPoint.classname) {
-                println("  $ex")
-            }
+//            for (ex in extPoint.) {
+//                println("  $ex")
+//            }
         }
     }
 }
