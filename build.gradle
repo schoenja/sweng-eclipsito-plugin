@@ -1,0 +1,52 @@
+buildscript {
+    ext.kotlin_version = '1.1.51'
+
+    repositories {
+        mavenCentral()
+//        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.0'
+    }
+}
+
+//plugins {
+////    id 'org.jetbrains.kotlin.jvm' version "$ext.kotlin_version"
+//    id 'org.jetbrains.kotlin.jvm' version '1.1.51'
+//    id 'java-gradle-plugin'
+//}
+
+group 'io.jasch.dev.kotlin.eclipsito'
+version '0.0.7-SNAPSHOT'
+
+apply plugin: 'kotlin'
+//apply plugin: 'java'
+//apply plugin: 'groovy'
+apply plugin: 'java-gradle-plugin'
+//apply plugin: 'com.github.johnrengelman.shadow'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    compileOnly gradleApi()
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+//    compile 'org.redundent:kotlin-xml-builder:1.2'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+/*
+jar {
+    from {
+        configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}*/
