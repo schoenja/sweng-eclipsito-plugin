@@ -3,6 +3,7 @@ package io.jasch.dev.kotlin.eclipsito.tasks
 import io.jasch.dev.kotlin.eclipsito.EclipsitoPluginExtension
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
+import java.io.File
 
 
 /**
@@ -38,7 +39,9 @@ open class CreatePluginXMLTask : DefaultTask() {
                 "    </library>")
 
         project.configurations.getByName("runtime").forEach {
-            if (it.isFile) {
+//            if (!myExtension.includeEclipsitoInXML && it.name.contains("eclipsito.jar")) {  }
+            if (it.isFile && (myExtension.includeEclipsitoInXML || !it.name.contains("eclipsito.jar"))) {
+//            if (it.isFile && !(!myExtension.includeEclipsitoInXML && it.name.contains("eclipsito.jar"))) {
                 plugin.append("\n    <library name=\"lib/${it.name}\">\n" +
                         "      <export name=\"*\"/>\n" +
                         "    </library>")
@@ -79,6 +82,8 @@ open class CreatePluginXMLTask : DefaultTask() {
 
 
         plugin.append("</plugin>") // End of plugin tag
-        println(plugin.toString())
+//        println(plugin.toString())
+
+        myExtension.pluginXMLFile.writeText(plugin.toString())
     }
 }

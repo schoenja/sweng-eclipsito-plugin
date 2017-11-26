@@ -4,6 +4,7 @@ import groovyjarjarcommonscli.MissingArgumentException
 import io.jasch.dev.kotlin.eclipsito.data.Extension
 import io.jasch.dev.kotlin.eclipsito.data.ExtensionPoint
 import org.gradle.api.Project
+import java.io.File
 
 /**
  *
@@ -14,6 +15,19 @@ import org.gradle.api.Project
 open class EclipsitoPluginExtension() {
     var extPoints: ArrayList<ExtensionPoint> = ArrayList()
     var exts: ArrayList<Extension> = ArrayList()
+
+    var includeEclipsitoInXML = false
+
+    lateinit var pluginXMLFile: File
+    lateinit var distBinDirectory: File
+    lateinit var pluginsDirectory: File
+    lateinit var ganttprojectJarFile: File
+    lateinit var eclipsitoJar: File
+    lateinit var resourcesDirectory: File
+
+    fun pluginxml(file: File) {
+        this.pluginXMLFile = file
+    }
 
     fun extension(extension: LinkedHashMap<String, String>) {
         val extPoint = extension["point"]
