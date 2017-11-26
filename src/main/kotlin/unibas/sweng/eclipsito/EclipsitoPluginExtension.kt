@@ -1,8 +1,8 @@
-package io.jasch.dev.kotlin.eclipsito
+package unibas.sweng.eclipsito
 
 import groovyjarjarcommonscli.MissingArgumentException
-import io.jasch.dev.kotlin.eclipsito.data.Extension
-import io.jasch.dev.kotlin.eclipsito.data.ExtensionPoint
+import unibas.sweng.eclipsito.data.Extension
+import unibas.sweng.eclipsito.data.ExtensionPoint
 import org.gradle.api.Project
 import java.io.File
 

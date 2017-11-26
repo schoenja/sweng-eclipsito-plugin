@@ -1,4 +1,4 @@
-package io.jasch.dev.kotlin.eclipsito.data
+package unibas.sweng.eclipsito.data
 
 /**
  *

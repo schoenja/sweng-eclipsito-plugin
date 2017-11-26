@@ -1,16 +1,20 @@
-package io.jasch.dev.kotlin.eclipsito
+package unibas.sweng.eclipsito
 
-import io.jasch.dev.kotlin.eclipsito.tasks.CopyPluginTask
-import io.jasch.dev.kotlin.eclipsito.tasks.CreatePluginXMLTask
-import io.jasch.dev.kotlin.eclipsito.tasks.ListExtensionsTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.ApplicationPlugin
+import unibas.sweng.eclipsito.tasks.CopyPluginTask
+import unibas.sweng.eclipsito.tasks.CreatePluginXMLTask
+import unibas.sweng.eclipsito.tasks.ListExtensionsTask
 
 /**
+ * The eclipsito plugin for ganttproject
+ *
+ * This plugin is made as an interface between the gradle build system
+ * and the eclipsito framework for ganttproject. Its main purpose is
+ * to hide the eclipsito overhead from the user.
  *
  * @author jasch
- * @version 0.0.1
+ * @version 0.0.16
  * @since 0.0.1
  */
 class EclipsitoPlugin : Plugin<Project> {

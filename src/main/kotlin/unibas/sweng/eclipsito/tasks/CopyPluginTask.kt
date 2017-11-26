@@ -1,6 +1,6 @@
-package io.jasch.dev.kotlin.eclipsito.tasks
+package unibas.sweng.eclipsito.tasks
 
-import io.jasch.dev.kotlin.eclipsito.EclipsitoPluginExtension
+import unibas.sweng.eclipsito.EclipsitoPluginExtension
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 import java.io.File
