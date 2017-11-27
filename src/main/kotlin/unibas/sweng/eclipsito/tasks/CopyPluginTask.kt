@@ -21,6 +21,10 @@ open class CopyPluginTask : DefaultTask() {
         val myExtension = project.extensions.getByName("eclipsito") as EclipsitoPluginExtension
 
         // Create target folder
+        if (!File(myExtension.pluginsDirectory, "ganttproject").deleteRecursively()) {
+            error("Failed to delete ganttproject folder. Aborting.")
+            return
+        }
         val targetFolder = File(myExtension.pluginsDirectory, "ganttproject")
 
         // Copy plugin.xml
@@ -43,6 +47,6 @@ open class CopyPluginTask : DefaultTask() {
         myExtension.resourcesDirectory.copyRecursively(resTarget)
 
         // Copy eclipsito
-        myExtension.eclipsitoJar.copyTo(File(myExtension.distBinDirectory, "eclipsito.jar"))
+        myExtension.eclipsitoJar.copyTo(File(myExtension.distBinDirectory, "eclipsito.jar"), overwrite = true)
     }
 }
