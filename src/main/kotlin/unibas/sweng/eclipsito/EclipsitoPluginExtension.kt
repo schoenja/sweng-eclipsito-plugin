@@ -7,10 +7,10 @@ import org.gradle.api.Project
 import java.io.File
 
 /**
- *
+ * Extension object for the eclipsito plugin
  * @author jasch
- * @version
- * @since
+ * @version 0.1.0
+ * @since 0.1.0
  */
 open class EclipsitoPluginExtension() {
     var extPoints: ArrayList<ExtensionPoint> = ArrayList()

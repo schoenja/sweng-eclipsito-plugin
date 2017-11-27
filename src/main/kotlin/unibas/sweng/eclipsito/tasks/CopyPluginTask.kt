@@ -6,10 +6,13 @@ import org.gradle.api.tasks.TaskAction
 import java.io.File
 
 /**
+ * Copy plugin task
  *
+ * This task replicates the behaviour of the `copyPlugin` task from
+ * the original `ganttproject` build system.
  * @author jasch
- * @version
- * @since
+ * @version 0.1.0
+ * @since 0.1.0
  */
 open class CopyPluginTask : DefaultTask() {
 

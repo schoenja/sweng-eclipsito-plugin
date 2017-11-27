@@ -1,10 +1,11 @@
 package unibas.sweng.eclipsito.data
 
 /**
+ * Stores the information about an extension point.
  *
  * @author jasch
- * @version
- * @since
+ * @version 0.1.0
+ * @since 0.1.0
  * @param id The ID of the extension point
  * @param name The name used by extensions for this extension point
  * @param xmlTag The name of the XML tag used by extensions for this extension point
