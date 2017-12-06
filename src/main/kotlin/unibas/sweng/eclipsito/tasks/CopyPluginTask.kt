@@ -38,7 +38,7 @@ open class CopyPluginTask : DefaultTask() {
 
         project.configurations.getByName("runtime").forEach {
             if (it.isFile && (myExtension.includeEclipsitoInXML || !it.name.contains("eclipsito.jar"))) {
-                it.absoluteFile.copyTo(File(depTarget, it.name))
+                it.absoluteFile.copyTo(File(depTarget, it.name), overwrite = true)
             }
         }
 

@@ -10,7 +10,7 @@ buildscript {
 }
 
 group 'unibas.sweng.eclipsito'
-version '0.1.1-RC1'
+version '0.1.1-RC2'
 
 apply plugin: 'kotlin'
 apply plugin: 'java-gradle-plugin'
