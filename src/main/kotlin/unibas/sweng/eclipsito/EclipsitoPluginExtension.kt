@@ -4,6 +4,7 @@ import groovyjarjarcommonscli.MissingArgumentException
 import unibas.sweng.eclipsito.data.Extension
 import unibas.sweng.eclipsito.data.ExtensionPoint
 import org.gradle.api.Project
+import org.gradle.api.file.FileCollection
 import java.io.File
 
 /**
@@ -19,6 +20,8 @@ open class EclipsitoPluginExtension() {
     var includeEclipsitoInXML = false
 
     lateinit var pluginXMLFile: File
+    lateinit var eclipsitoConfigFile: File
+    lateinit var eclipsitoJarCollection: FileCollection
     lateinit var distBinDirectory: File
     lateinit var pluginsDirectory: File
     lateinit var ganttprojectJarFile: File

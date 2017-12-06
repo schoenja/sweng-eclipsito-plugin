@@ -44,8 +44,10 @@ Configuration is handled in the `eclipsito` block.
 | `pluginsDirectory` | takes a `file('..')` object | Target directory for the eclipsito plugins. |
 | `distBinDirectory` | takes a `file('..')` object | Target directory for the whole eclipsito setup. |
 | `ganttprojectJarFile` | takes a `file('..')` object | The generated jar file of the eclipsito plugin. |
-| `resourcesDirectory` | takes a `file('..')` object | foo |
-| `eclipsitoJar` | takes a `file('..')` object | foo |
+| `resourcesDirectory` | takes a `file('..')` object | The directory that contains the java resource directory (typically 'src/main/resources') |
+| `eclipsitoJar` | takes a `file('..')` object | The 'eclipsito.jar' file to use. |
+| `eclipsitoConfigFile` | takes a `file('..')` object | The config file for 'eclipsito.jar'. |
+| `eclipsitoJarCollection` | takes a `fileCollection('..')` object | A file collection representing the 'eclipsito.jar' file. Always have this as `zipTree(eclipsitoJar)` unless you really know what you are doing! |
 
 #### Extension points
 Extension points are used to define possible extensions in eclipsito.
