@@ -37,6 +37,10 @@ open class CreatePluginXMLTask : DefaultTask() {
                 "      <export name=\"*\"/>\n" +
                 "    </library>")
 
+        plugin.append("\n    <library name=\"resources\">\n" +
+                "      <export name=\"*\"/>\n" +
+                "    </library>")
+
         project.configurations.getByName("runtime").forEach {
 //            if (!myExtension.includeEclipsitoInXML && it.name.contains("eclipsito.jar")) {  }
             if (it.isFile && (myExtension.includeEclipsitoInXML || !it.name.contains("eclipsito.jar"))) {
