@@ -7,7 +7,7 @@ import unibas.sweng.eclipsito.EclipsitoPluginExtension
 /**
  *
  * @author jasch
- * @version 0.1.2
+ * @version 0.2.0
  * @since 0.1.2
  */
 open class CreateEclipsitoConfigTask : DefaultTask() {
@@ -23,7 +23,7 @@ open class CreateEclipsitoConfigTask : DefaultTask() {
         val newConfig = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                 "<configuration name=\"ganttproject\"\n" +
                 "  platform-classname=\"org.bardsoftware.impl.eclipsito.BootImpl\"\n" +
-                "  modules-resource=\"$pluginDirString\"\n" +
+                "  modules-resource=\"/$pluginDirString\"\n" +
                 "  descriptor-file-pattern=\"plugin.xml\"\n" +
                 "  logging-level=\"ALL\"\n" +
                 "  application=\"biz.ganttproject.GanttProject\"\n" +

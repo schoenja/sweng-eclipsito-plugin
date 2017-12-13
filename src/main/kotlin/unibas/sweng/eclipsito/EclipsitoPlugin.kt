@@ -15,7 +15,7 @@ import unibas.sweng.eclipsito.tasks.UpdateEclipsitoJarTask
  * to hide the eclipsito overhead from the user.
  *
  * @author jasch
- * @version 0.0.16
+ * @version 0.2.0
  * @since 0.0.1
  */
 class EclipsitoPlugin : Plugin<Project> {
@@ -32,8 +32,8 @@ class EclipsitoPlugin : Plugin<Project> {
         val createPluginXML = project.tasks.create("createPluginXML", CreatePluginXMLTask::class.java)
         val copyPlugin = project.tasks.create("copyPlugin", CopyPluginTask::class.java)
         val createEclipsitoConfig = project.tasks.create("createEclipsitoConfig", CreateEclipsitoConfigTask::class.java)
-        val updateEclipsitoJar = project.tasks.create("updateEclipsitoJar", UpdateEclipsitoJarTask::class.java)
-        updateEclipsitoJar.dependsOn(createEclipsitoConfig)
+//        val updateEclipsitoJar = project.tasks.create("updateEclipsitoJar", UpdateEclipsitoJarTask::class.java)
+//        updateEclipsitoJar.dependsOn(createEclipsitoConfig)
 
         copyPlugin.dependsOn(createPluginXML)
     }
