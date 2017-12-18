@@ -1,4 +1,4 @@
-package unibas.sweng.eclipsito.data
+package schoenja.sweng.eclipsito.data
 
 /**
  *

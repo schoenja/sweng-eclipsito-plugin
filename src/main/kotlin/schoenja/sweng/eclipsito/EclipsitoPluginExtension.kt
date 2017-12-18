@@ -1,8 +1,8 @@
-package unibas.sweng.eclipsito
+package schoenja.sweng.eclipsito
 
 import groovyjarjarcommonscli.MissingArgumentException
-import unibas.sweng.eclipsito.data.Extension
-import unibas.sweng.eclipsito.data.ExtensionPoint
+import schoenja.sweng.eclipsito.data.Extension
+import schoenja.sweng.eclipsito.data.ExtensionPoint
 import org.gradle.api.Project
 import org.gradle.api.file.FileCollection
 import java.io.File

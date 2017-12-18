@@ -1,11 +1,11 @@
-package unibas.sweng.eclipsito
+package schoenja.sweng.eclipsito
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import unibas.sweng.eclipsito.tasks.CopyPluginTask
-import unibas.sweng.eclipsito.tasks.CreateEclipsitoConfigTask
-import unibas.sweng.eclipsito.tasks.CreatePluginXMLTask
-import unibas.sweng.eclipsito.tasks.UpdateEclipsitoJarTask
+import schoenja.sweng.eclipsito.tasks.CopyPluginTask
+import schoenja.sweng.eclipsito.tasks.CreateEclipsitoConfigTask
+import schoenja.sweng.eclipsito.tasks.CreatePluginXMLTask
+import schoenja.sweng.eclipsito.tasks.UpdateEclipsitoJarTask
 
 /**
  * The eclipsito plugin for ganttproject
