@@ -14,7 +14,7 @@ plugins {
 }
 
 group 'schoenja.sweng.eclipsito'
-version '0.3.0-RC2'
+version '0.3.0'
 
 apply plugin: 'kotlin'
 apply plugin: 'java-gradle-plugin'
@@ -54,7 +54,8 @@ pluginBundle {
             id = 'schoenja.sweng.eclipsito.EclipsitoPlugin'
             displayName = "Custom plugin for eclipsito shadowing"
             description = "A plugin that shadows parts of the Eclipsito launcher used in ganttproject.\n" +
-                    "This was created for a university assignment and will most likely not be useful to anyone else."
+                    "This was created for a university assignment and will most likely not be useful to anyone else.\n\n" +
+                    "For full documentation see: https://github.com/schoenja/sweng-eclipsito-plugin"
             tags = ['eclipsito', 'sweng', 'custom']
         }
     }
