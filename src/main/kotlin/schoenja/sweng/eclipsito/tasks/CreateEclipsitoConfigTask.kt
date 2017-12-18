@@ -1,8 +1,8 @@
-package unibas.sweng.eclipsito.tasks
+package schoenja.sweng.eclipsito.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
-import unibas.sweng.eclipsito.EclipsitoPluginExtension
+import schoenja.sweng.eclipsito.EclipsitoPluginExtension
 
 /**
  *
