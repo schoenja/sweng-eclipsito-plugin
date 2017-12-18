@@ -14,17 +14,29 @@ done to simplify the plugin. Multi module support might be possible, but as
 the overall goal is to remove eclipsito as much as possible, it was not implemented.
 
 ## Include in gradle build file
-Copy the plugin jar file into your project. Then include it as shown in the example below.
+The plugin is available [in the official gradle repository](https://plugins.gradle.org/plugin/schoenja.sweng.eclipsito.EclipsitoPlugin).
 
 Example:
 ```groovy
 buildscript {
-    dependencies {
-        classpath files('eclipsito-plugin/eclipsito-0.1.1-RC1.jar')
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
     }
+  }
+  dependencies {
+    classpath "gradle.plugin.schoenja.sweng.eclipsito:eclipsito:0.3.0"
+  }
 }
 
-apply plugin: 'unibas.sweng.eclipsito.EclipsitoPlugin'
+apply plugin: "schoenja.sweng.eclipsito.EclipsitoPlugin"
+```
+
+or, if you are using Gradle v2.1 or higher and are working in the main project folder:
+```groovy
+plugins {
+  id "schoenja.sweng.eclipsito.EclipsitoPlugin" version "0.3.0"
+}
 ```
 
 ## Usage
